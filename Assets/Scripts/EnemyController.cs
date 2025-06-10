@@ -63,12 +63,8 @@ public class EnemyController : MonoBehaviour
         {
             //Muerte
             animator.SetTrigger("Death");
-            Invoke("DesactivarObjeto", 5f);
+            Destroy(gameObject, 5f);
         }
-    }
-    private void DesactivarObjeto()
-    {
-        gameObject.SetActive(false);
     }
 
 }

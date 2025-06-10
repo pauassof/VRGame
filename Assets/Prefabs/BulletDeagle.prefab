@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6275092484456602406}
   - component: {fileID: 4414504964341636273}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: BulletDeagle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1407ec84e6ba2fa4d9c4bd98025aaebd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 20
   bulletHolePrefab: {fileID: 197259901747128702, guid: 5396685dd23b1ef40bcde4b8883e965b, type: 3}
 --- !u!1 &4649798502754891849
 GameObject:

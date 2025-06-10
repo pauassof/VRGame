@@ -15,6 +15,11 @@ public class Bullet : MonoBehaviour
             collision.gameObject.GetComponent<EnemyController>().TakeDamage(damage);
             GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
         }
+        else if (collision.gameObject.tag == "EnemyHead")
+        {
+            collision.gameObject.transform.GetComponentInParent<EnemyController>().TakeDamage(damage * 2);
+            GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
+        }
         else
         {
             GameObject holeClone = Instantiate(bulletHolePrefab);
