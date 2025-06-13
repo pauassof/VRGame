@@ -9,6 +9,7 @@ public class CartucheraCargadores : MonoBehaviour
     private GameObject CargadorPrefab;
     private XRGrabInteractable cartucheraLeft;
 
+
     private void Start()
     {
         cartucheraLeft = gameObject.GetComponent<XRGrabInteractable>();
@@ -16,13 +17,15 @@ public class CartucheraCargadores : MonoBehaviour
 
     public void CogerCargador(SelectEnterEventArgs args)
     {
-        GameObject cargadorClone = Instantiate(CargadorPrefab);
-        
-        XRGrabInteractable interactable = cargadorClone.GetComponent<XRGrabInteractable>();
-        XRBaseInteractor interactor = args.interactorObject as XRBaseInteractor;
+        Debug.Log("Agarro Algo");
+            GameObject cargadorClone = Instantiate(CargadorPrefab);
 
-        cartucheraLeft.interactionManager.SelectExit((IXRSelectInteractor)interactor,(IXRSelectInteractable)cartucheraLeft);
-        cartucheraLeft.interactionManager.SelectEnter((IXRSelectInteractor)interactor, (IXRSelectInteractable)interactable);
-        
+            XRGrabInteractable interactable = cargadorClone.GetComponent<XRGrabInteractable>();
+            XRBaseInteractor interactor = args.interactorObject as XRBaseInteractor;
+
+            cartucheraLeft.interactionManager.SelectExit((IXRSelectInteractor)interactor, (IXRSelectInteractable)cartucheraLeft);
+            cartucheraLeft.interactionManager.SelectEnter((IXRSelectInteractor)interactor, (IXRSelectInteractable)interactable);
+
     }
+
 }

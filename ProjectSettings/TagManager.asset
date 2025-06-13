@@ -4,9 +4,11 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - MagazineP90
   - Enemy
   - EnemyHead
+  - CartucheraI
+  - CartucheraD
+  - Magazine
   layers:
   - Default
   - TransparentFX
@@ -19,9 +21,9 @@ TagManager:
   - Deagle
   - Cargador
   - Enemy
-  - 
-  - 
-  - 
+  - CartucheraD
+  - CartucheraI
+  - CargadorTrigger
   - 
   - 
   - 

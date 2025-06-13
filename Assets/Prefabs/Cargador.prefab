@@ -187,7 +187,7 @@ GameObject:
   - component: {fileID: 3664303520891320022}
   m_Layer: 9
   m_Name: Cargador
-  m_TagString: MagazineP90
+  m_TagString: Magazine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -200,7 +200,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4092390064546680405}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.030073727, y: -0.034149796, z: 0.7035117, w: 0.7092254}
+  m_LocalRotation: {x: 0.030074192, y: -0.034145355, z: 0.70351464, w: 0.7092228}
   m_LocalPosition: {x: -7.766, y: -2.541, z: -35.221}
   m_LocalScale: {x: 0.15933871, y: 0.15933874, z: 0.15933873}
   m_ConstrainProportionsScale: 0
@@ -208,7 +208,7 @@ Transform:
   - {fileID: 3784579955473105194}
   - {fileID: 2966880704183557131}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 5.204, y: -0.352, z: 89.521}
 --- !u!65 &3199868812741956165
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -228,8 +228,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.16441984, y: 0.67035604, z: 0.2270111}
-  m_Center: {x: -0.00068639236, y: -0.06749643, z: -0.45056802}
+  m_Size: {x: 0.16441984, y: 0.6733474, z: 0.2270111}
+  m_Center: {x: -0.0006861968, y: -0.006809358, z: -0.45056695}
 --- !u!114 &3194370717607548913
 MonoBehaviour:
   m_ObjectHideFlags: 0
