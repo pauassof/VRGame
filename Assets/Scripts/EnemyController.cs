@@ -8,6 +8,21 @@ public class EnemyController : MonoBehaviour
 
     [SerializeField]
     private EnemyStates currentState;
+    [SerializeField]
+    private GameObject ball;
+    [SerializeField]
+    private Transform ballSpawnPoint;
+    [SerializeField]
+    private float ballSpeed;
+    [SerializeField]
+    private float waitAttack;
+    private float passTime = 5;
+    [SerializeField]
+    private bool hasBall;
+    [SerializeField]
+    private float fuerzaGravedad;
+
+
 
     private Animator animator;
     private Rigidbody rb;
@@ -28,14 +43,15 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        passTime += Time.deltaTime;
         if (currentState == EnemyStates.Following)
         {
             animator.SetBool("Attack", false);
             animator.SetBool("Walk", true);
             agent.destination = rival.transform.position;
-            float distance = (rival.transform.position - transform.position).magnitude;
+            float distance = (rival.transform.position - transform.position).magnitude - 0.2f;
 
-            if ((distance -= 0.2f) <= agent.stoppingDistance)
+            if (distance <= agent.stoppingDistance)
             {
                 currentState = EnemyStates.Attacking;
             }
@@ -43,19 +59,37 @@ public class EnemyController : MonoBehaviour
         if (currentState == EnemyStates.Attacking)
         {
             animator.SetBool("Walk", false);
-            animator.SetBool("Attack", true);
             transform.LookAt(new Vector3(rival.transform.position.x, transform.position.y, rival.transform.position.z));
-            
 
-            float distance = (rival.transform.position - transform.position).magnitude;
+                if (hasBall)
+                {
+                Debug.Log(passTime);
+                    if (passTime >= waitAttack)
+                    {
+                        animator.SetTrigger("Attack");
+                        Invoke("InstanciarBola", 1);
+   //                 ballClone.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(0, -fuerzaGravedad, 0));
+                        passTime = 0;
+                    }
+                }
+                else
+                {
+                    animator.SetBool("Attack", true);
+                }
+                float distance = (rival.transform.position - transform.position).magnitude - 0.2f;
 
-            if (distance > agent.stoppingDistance)
-            {
-                currentState = EnemyStates.Following;
-            }
-
+                if (distance > agent.stoppingDistance)
+                {
+                    currentState = EnemyStates.Following;
+                }
         }
     }
+    private void InstanciarBola()
+    {
+        GameObject ballClone = Instantiate(ball, ballSpawnPoint.transform.position, ballSpawnPoint.transform.rotation);
+        ballClone.gameObject.GetComponent<Rigidbody>().linearVelocity = ballClone.transform.up * ballSpeed;
+    }
+
     public void TakeDamage(float damage)
     {
         currentLife -= damage;

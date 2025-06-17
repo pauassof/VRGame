@@ -1,6 +1,7 @@
 using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit.Inputs;
 
 public class LevelManager : MonoBehaviour
@@ -12,6 +13,8 @@ public class LevelManager : MonoBehaviour
     private InputActionReference manoIzquierda;
     [SerializeField]
     private InputActionReference manoDerecha;
+    [SerializeField]
+    private Image vida;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -31,5 +34,9 @@ public class LevelManager : MonoBehaviour
         {
             panelAjustes.SetActive(!boolAjustes);
         }
+    }
+    public void BajarVida(float vida_)
+    {
+        vida.fillAmount = vida_;
     }
 }
