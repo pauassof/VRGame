@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -15,12 +16,18 @@ public class LevelManager : MonoBehaviour
     private InputActionReference manoDerecha;
     [SerializeField]
     private Image vida;
+    [SerializeField]
+    private Transform[] spawners;
+    [SerializeField]
+    private GameObject[] enemigos;
+    private int cantidadEnemigos;
+    private int tiempoSpawn;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        StartCoroutine(SpawnEnemigos());
     }
 
     // Update is called once per frame
@@ -38,5 +45,15 @@ public class LevelManager : MonoBehaviour
     public void BajarVida(float vida_)
     {
         vida.fillAmount = vida_;
+    }
+    private IEnumerator SpawnEnemigos()
+    {
+        for (int i = 0; cantidadEnemigos <= i; i++)
+        {
+            int random = Random.Range(0, spawners.Length);
+            int randomEnemy = Random.Range(0, enemigos.Length);
+            GameObject enemyClone = Instantiate(enemigos[randomEnemy], spawners[random].position, spawners[random].rotation);
+            yield return new WaitForSeconds(tiempoSpawn);
+        }
     }
 }

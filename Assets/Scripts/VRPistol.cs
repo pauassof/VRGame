@@ -25,7 +25,10 @@ public class VRPistol : MonoBehaviour
     private float sliderPos;
     [SerializeField]
     private bool deagle;
+    [SerializeField]
+    private Transform spawnArma;
     private bool hasSlider;
+    private bool esClon;
 
 
     private XRGrabInteractable interactable;
@@ -73,6 +76,11 @@ public class VRPistol : MonoBehaviour
 
     public void OnSelect()
     {
+        if (esClon)
+        {
+            transform.SetParent(spawnArma, false);
+            GetComponent<Rigidbody>().useGravity = true;
+        }
         if (interactable.IsSelectedByLeft())
         {
             //transform.GetChild(0).localPosition = leftHandPos;
@@ -104,12 +112,25 @@ public class VRPistol : MonoBehaviour
         }
         
     }
+    public void OnSelectExit()
+    {
+        GameObject armaClone = Instantiate(gameObject, spawnArma.transform.position, spawnArma.rotation);
+        armaClone.transform.SetParent(spawnArma, true);
+        armaClone.GetComponent<Rigidbody>().useGravity = false;
+        if (esClon == false)
+        {
+            Destroy(gameObject, 2f);
+        }
+        else
+        {
+            Destroy(armaClone, 2f);
+        }
+        
+    }
 
     public void LoadMagazine(SelectEnterEventArgs args)
     {
         magazine = args.interactableObject.transform.GetComponent<Magazine>();
-        Debug.Log("Meto cargador");
-        Debug.Log("tiene" + magazine.bullets);
         hasSlider = false;
     }
 
