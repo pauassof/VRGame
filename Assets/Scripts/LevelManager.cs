@@ -28,6 +28,7 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         StartCoroutine(SpawnEnemigos());
+        cantidadEnemigos = GameManager.instance.cantidadEnemigos;
     }
 
     // Update is called once per frame
