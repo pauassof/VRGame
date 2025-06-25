@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -29,16 +30,19 @@ public class MainMenuManager : MonoBehaviour
     {
         int random = Random.Range(15, 20);
         GameManager.instance.cantidadEnemigos = random;
+        SceneManager.LoadScene(1);
     }
     public void Medio()
     {
         int random = Random.Range(25, 30);
         GameManager.instance.cantidadEnemigos = random;
+        SceneManager.LoadScene(1);
     }
     public void Dificil()
     {
         int random = Random.Range(35, 40);
         GameManager.instance.cantidadEnemigos = random;
+        SceneManager.LoadScene(1);
     }
     public void ExitGame()
     {
