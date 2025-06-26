@@ -21,14 +21,15 @@ public class LevelManager : MonoBehaviour
     [SerializeField]
     private GameObject[] enemigos;
     private int cantidadEnemigos;
+    [SerializeField]
     private int tiempoSpawn;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        StartCoroutine(SpawnEnemigos());
         cantidadEnemigos = GameManager.instance.cantidadEnemigos;
+        StartCoroutine(SpawnEnemigos());
     }
 
     // Update is called once per frame
@@ -49,7 +50,7 @@ public class LevelManager : MonoBehaviour
     }
     private IEnumerator SpawnEnemigos()
     {
-        for (int i = 0; cantidadEnemigos <= i; i++)
+        for (int i = 0; cantidadEnemigos >= i; i++)
         {
             int random = Random.Range(0, spawners.Length);
             int randomEnemy = Random.Range(0, enemigos.Length);
