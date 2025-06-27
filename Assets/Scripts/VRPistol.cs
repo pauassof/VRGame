@@ -79,7 +79,7 @@ public class VRPistol : MonoBehaviour
         if (esClon)
         {
             transform.SetParent(spawnArma, false);
-            GetComponent<Rigidbody>().useGravity = true;
+            GetComponent<Rigidbody>().isKinematic = false;
         }
         if (interactable.IsSelectedByLeft())
         {
@@ -116,14 +116,14 @@ public class VRPistol : MonoBehaviour
     {
         GameObject armaClone = Instantiate(gameObject, spawnArma.transform.position, spawnArma.rotation);
         armaClone.transform.SetParent(spawnArma, true);
-        armaClone.GetComponent<Rigidbody>().useGravity = false;
+        armaClone.GetComponent<Rigidbody>().isKinematic = true;
         if (esClon == false)
         {
-            Destroy(gameObject, 2f);
+            Destroy(gameObject);
         }
         else
         {
-            Destroy(armaClone, 2f);
+            Destroy(armaClone);
         }
         
     }

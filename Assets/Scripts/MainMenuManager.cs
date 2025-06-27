@@ -48,4 +48,8 @@ public class MainMenuManager : MonoBehaviour
     {
         Application.Quit();
     }
+    public void VolverMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
 }

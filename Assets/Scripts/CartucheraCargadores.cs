@@ -27,5 +27,9 @@ public class CartucheraCargadores : MonoBehaviour
             cartucheraLeft.interactionManager.SelectEnter((IXRSelectInteractor)interactor, (IXRSelectInteractable)interactable);
 
     }
+    public void EntraLaMano()
+    {
+        Debug.Log("Entra Algo");
+    }
 
 }

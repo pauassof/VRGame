@@ -63,7 +63,7 @@ public class EnemyController : MonoBehaviour
 
                 if (hasBall)
                 {
-                Debug.Log(passTime);
+
                     if (passTime >= waitAttack)
                     {
                         animator.SetTrigger("Attack");
@@ -98,6 +98,7 @@ public class EnemyController : MonoBehaviour
             //Muerte
             animator.SetTrigger("Death");
             Destroy(gameObject, 5f);
+            lm.RestarEnemigos();
         }
     }
 

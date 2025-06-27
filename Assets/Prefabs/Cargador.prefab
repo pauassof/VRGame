@@ -187,7 +187,7 @@ GameObject:
   - component: {fileID: 3664303520891320022}
   m_Layer: 9
   m_Name: Cargador
-  m_TagString: Magazine
+  m_TagString: MagazineP90
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -9,6 +9,7 @@ TagManager:
   - CartucheraI
   - CartucheraD
   - Magazine
+  - MagazineP90
   layers:
   - Default
   - TransparentFX

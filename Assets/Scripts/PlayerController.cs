@@ -8,11 +8,13 @@ public class PlayerController : MonoBehaviour
     private float maxLife;
     private float vidaParalm;
     private LevelManager lm;
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         lm = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+        
     }
 
     // Update is called once per frame
@@ -29,7 +31,7 @@ public class PlayerController : MonoBehaviour
         
         if (totalLife <= 0)
         {
-            //Death
+            lm.Muerte();
         }
         else
         {

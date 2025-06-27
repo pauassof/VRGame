@@ -2,6 +2,7 @@ using System.Collections;
 using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit.Inputs;
 
@@ -21,20 +22,28 @@ public class LevelManager : MonoBehaviour
     [SerializeField]
     private GameObject[] enemigos;
     private int cantidadEnemigos;
+    private int totalEnemigos;
     [SerializeField]
     private int tiempoSpawn;
+    [SerializeField]
+    private GameObject panelFinal, panelPausa;
+    [SerializeField]
+    private GameObject body;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         cantidadEnemigos = GameManager.instance.cantidadEnemigos;
+        totalEnemigos = cantidadEnemigos;
+        
         StartCoroutine(SpawnEnemigos());
     }
 
     // Update is called once per frame
     void Update()
     {
+        body.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y - 0.4f, Camera.main.transform.position.z);
         if (manoIzquierda)
         {
             panelAjustes.SetActive(!boolAjustes);
@@ -57,5 +66,26 @@ public class LevelManager : MonoBehaviour
             GameObject enemyClone = Instantiate(enemigos[randomEnemy], spawners[random].position, spawners[random].rotation);
             yield return new WaitForSeconds(tiempoSpawn);
         }
+    }
+    public void RestarEnemigos()
+    {
+        totalEnemigos--;
+        if (totalEnemigos == 0)
+        {
+            panelFinal.SetActive(true);
+            //sonido victoria
+        }
+    }
+    public void PausePanel()
+    {
+        panelPausa.SetActive(true);
+    }
+    public void Menu()
+    {
+        SceneManager.LoadScene(0);
+    }
+    public void Muerte()
+    {
+        SceneManager.LoadScene(2);
     }
 }

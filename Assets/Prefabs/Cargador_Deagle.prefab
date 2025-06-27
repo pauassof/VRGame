@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5214129120035265325}
   m_Layer: 9
   m_Name: Cargador_Deagle
-  m_TagString: Untagged
+  m_TagString: Magazine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
