@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  bulletHolePrefab: {fileID: 197259901747128702, guid: 5396685dd23b1ef40bcde4b8883e965b, type: 3}
+  bulletHolePrefab: {fileID: 0}
 --- !u!1 &4649798502754891849
 GameObject:
   m_ObjectHideFlags: 0

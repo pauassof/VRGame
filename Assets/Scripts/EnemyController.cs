@@ -96,9 +96,9 @@ public class EnemyController : MonoBehaviour
         if (currentLife <= 0)
         {
             //Muerte
-            animator.SetTrigger("Death");
-            Destroy(gameObject, 5f);
             lm.RestarEnemigos();
+            Destroy(gameObject);
+            
         }
     }
 

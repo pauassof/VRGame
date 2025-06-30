@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
@@ -27,6 +28,8 @@ public class VRPistol : MonoBehaviour
     private bool deagle;
     [SerializeField]
     private Transform spawnArma;
+    [SerializeField]
+    private TextMeshProUGUI textBullets;
     private bool hasSlider;
     private bool esClon;
 
@@ -47,6 +50,15 @@ public class VRPistol : MonoBehaviour
    
     private void Update()
     {
+        if (magazine != null)
+        {
+            textBullets.text = magazine.bullets.ToString();
+        }
+        else
+        {
+            textBullets.text = "0";
+        }
+        
         if (!deagle)
         {
             if (slider.localPosition.z <= sliderPos)
@@ -98,6 +110,7 @@ public class VRPistol : MonoBehaviour
         {
             if (magazine != null && magazine.bullets > 0 && hasSlider)
             {
+                Debug.Log("disparo");
                 magazine.bullets--;
                 GameObject bulletClone = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
                 bulletClone.gameObject.GetComponent<Rigidbody>().linearVelocity = bulletClone.transform.forward * bulletSpeed;
@@ -130,12 +143,14 @@ public class VRPistol : MonoBehaviour
 
     public void LoadMagazine(SelectEnterEventArgs args)
     {
+        Debug.Log("MetoCargador");
         magazine = args.interactableObject.transform.GetComponent<Magazine>();
         hasSlider = false;
     }
 
     public void RemoveMagazine()
     {
+        Debug.Log("MetoCargador");
         magazine = null;
         hasSlider = false;
     }
