@@ -6,6 +6,8 @@ public class ZombieBall : MonoBehaviour
     private float damage;
     [SerializeField]
     private GameObject explosion;
+    [SerializeField]
+    private AudioClip explosionSFX;
     private Rigidbody rb;
 
     private void Start()
@@ -20,6 +22,7 @@ public class ZombieBall : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
+        AudioManager.instance.PlaySFX(explosionSFX, 1);
         if (collision.transform.tag == "Player")
         {
             collision.gameObject.transform.GetComponent<PlayerController>().TakeDamage(damage);

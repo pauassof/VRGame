@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/VRDesde0.unity
     guid: 56f9a19474e732546a627be1e8bbafaf
+  - enabled: 1
+    path: Assets/Scenes/Lose.unity
+    guid: c40ed38207b26514bafa284cdae4c889
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: baf68c28de5c9aa498b5b6504ca7634d, type: 2}

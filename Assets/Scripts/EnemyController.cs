@@ -1,6 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
@@ -21,6 +22,12 @@ public class EnemyController : MonoBehaviour
     private bool hasBall;
     [SerializeField]
     private float fuerzaGravedad;
+    [SerializeField]
+    private Image vidaImage;
+    [SerializeField]
+    private AudioClip attackSFX, hitSFX;
+    private float vida;
+    private float vidaTotal;
 
 
 
@@ -38,6 +45,7 @@ public class EnemyController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         lm = GameObject.Find("LevelManager").GetComponent<LevelManager>();
         rival = GameObject.FindGameObjectWithTag("Player");
+        vidaTotal = currentLife;
     }
 
     // Update is called once per frame
@@ -63,10 +71,10 @@ public class EnemyController : MonoBehaviour
 
                 if (hasBall)
                 {
-
                     if (passTime >= waitAttack)
                     {
-                        animator.SetTrigger("Attack");
+                    AudioManager.instance.PlaySFX(attackSFX, 1);
+                    animator.SetTrigger("Attack");
                         Invoke("InstanciarBola", 1);
    //                 ballClone.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(0, -fuerzaGravedad, 0));
                         passTime = 0;
@@ -74,7 +82,8 @@ public class EnemyController : MonoBehaviour
                 }
                 else
                 {
-                    animator.SetBool("Attack", true);
+                AudioManager.instance.PlaySFX(attackSFX, 1);
+                animator.SetBool("Attack", true);
                 }
                 float distance = (rival.transform.position - transform.position).magnitude - 0.2f;
 
@@ -93,6 +102,9 @@ public class EnemyController : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentLife -= damage;
+        vida = currentLife / vidaTotal;
+        vidaImage.fillAmount = vida;
+        AudioManager.instance.PlaySFX(hitSFX, 1);
         if (currentLife <= 0)
         {
             //Muerte

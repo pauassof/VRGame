@@ -30,19 +30,22 @@ public class VRPistol : MonoBehaviour
     private Transform spawnArma;
     [SerializeField]
     private TextMeshProUGUI textBullets;
+    [SerializeField]
+    private AudioClip shootSFX, recargarSFX, noBulletsSFX;
+    
     private bool hasSlider;
-    private bool esClon;
 
 
     private XRGrabInteractable interactable;
     [SerializeField]
-    private Vector3 leftHandPos, rightHandPos;
+    private Transform transformLeft;
     [SerializeField]
-    private Vector3 leftHandRot, rightHandRot;
+    private Transform transformRight;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+
         interactable = GetComponent<XRGrabInteractable>();
         
     }
@@ -88,29 +91,25 @@ public class VRPistol : MonoBehaviour
 
     public void OnSelect()
     {
-        if (esClon)
-        {
+
             transform.SetParent(spawnArma, false);
             GetComponent<Rigidbody>().isKinematic = false;
-        }
         if (interactable.IsSelectedByLeft())
         {
-            //transform.GetChild(0).localPosition = leftHandPos;
-           // transform.GetChild(0).localEulerAngles = leftHandRot;
+            gameObject.GetComponent<XRGrabInteractable>().attachTransform = transformLeft; 
         }
         else
         {
-            //transform.GetChild(0).localPosition = rightHandPos;
-            //transform.GetChild(0).localEulerAngles = rightHandRot;
+            gameObject.GetComponent<XRGrabInteractable>().attachTransform = transformRight;
         }
     }
     public void OnActivated()//Shoot
     {
         if(timePass > fireRate)
         {
-            if (magazine != null && magazine.bullets > 0 && hasSlider)
+            if (magazine != null && magazine.bullets > 0)
             {
-                Debug.Log("disparo");
+                AudioManager.instance.PlaySFX(shootSFX, 1);
                 magazine.bullets--;
                 GameObject bulletClone = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
                 bulletClone.gameObject.GetComponent<Rigidbody>().linearVelocity = bulletClone.transform.forward * bulletSpeed;
@@ -120,38 +119,34 @@ public class VRPistol : MonoBehaviour
             }
             else
             {
-
+                AudioManager.instance.PlaySFX(noBulletsSFX, 1);
             }
+
         }
         
     }
+    private void OnCollisionStay(Collision collision)
+    {
+        Debug.Log(collision.gameObject.name);
+    }
     public void OnSelectExit()
     {
-        GameObject armaClone = Instantiate(gameObject, spawnArma.transform.position, spawnArma.rotation);
-        armaClone.transform.SetParent(spawnArma, true);
-        armaClone.GetComponent<Rigidbody>().isKinematic = true;
-        if (esClon == false)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            Destroy(armaClone);
-        }
+        gameObject.transform.position = spawnArma.position;
+        gameObject.transform.rotation = spawnArma.rotation;
+        gameObject.transform.SetParent(spawnArma, true);
+        gameObject.GetComponent<Rigidbody>().isKinematic = true;
         
     }
 
     public void LoadMagazine(SelectEnterEventArgs args)
     {
-        Debug.Log("MetoCargador");
+        AudioManager.instance.PlaySFX(recargarSFX, 1);
         magazine = args.interactableObject.transform.GetComponent<Magazine>();
-        hasSlider = false;
+
     }
 
     public void RemoveMagazine()
     {
-        Debug.Log("MetoCargador");
         magazine = null;
-        hasSlider = false;
     }
 }

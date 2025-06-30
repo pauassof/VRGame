@@ -26,14 +26,17 @@ public class LevelManager : MonoBehaviour
     [SerializeField]
     private int tiempoSpawn;
     [SerializeField]
-    private GameObject panelFinal, panelPausa;
+    private GameObject panelFinal;
     [SerializeField]
     private GameObject body;
+    [SerializeField]
+    private AudioClip gameMusic;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        AudioManager.instance.PlayMusic(gameMusic, 1);
         cantidadEnemigos = GameManager.instance.cantidadEnemigos;
         totalEnemigos = cantidadEnemigos;
         
@@ -75,10 +78,6 @@ public class LevelManager : MonoBehaviour
             panelFinal.SetActive(true);
             //sonido victoria
         }
-    }
-    public void PausePanel()
-    {
-        panelPausa.SetActive(true);
     }
     public void Menu()
     {
