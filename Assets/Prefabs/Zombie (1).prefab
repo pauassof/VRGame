@@ -5764,6 +5764,8 @@ MonoBehaviour:
   hasBall: 0
   fuerzaGravedad: 0
   vidaImage: {fileID: 2018941983213056843}
+  attackSFX: {fileID: 8300000, guid: 566cfc87f3be0294985246e8f7536497, type: 3}
+  hitSFX: {fileID: 8300000, guid: b257ef6fc739d8a4bacbe5b64779641b, type: 3}
   currentLife: 50
 --- !u!195 &6125446650396935134
 NavMeshAgent:

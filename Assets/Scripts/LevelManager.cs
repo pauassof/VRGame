@@ -8,8 +8,6 @@ using UnityEngine.XR.Interaction.Toolkit.Inputs;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject panelAjustes;
     private bool boolAjustes = false;
     [SerializeField]
     private InputActionReference manoIzquierda;
@@ -29,14 +27,13 @@ public class LevelManager : MonoBehaviour
     private GameObject panelFinal;
     [SerializeField]
     private GameObject body;
-    [SerializeField]
-    private AudioClip gameMusic;
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        AudioManager.instance.PlayMusic(gameMusic, 1);
+
         cantidadEnemigos = GameManager.instance.cantidadEnemigos;
         totalEnemigos = cantidadEnemigos;
         
@@ -47,14 +44,7 @@ public class LevelManager : MonoBehaviour
     void Update()
     {
         body.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y - 0.4f, Camera.main.transform.position.z);
-        if (manoIzquierda)
-        {
-            panelAjustes.SetActive(!boolAjustes);
-        }
-        else if (manoDerecha)
-        {
-            panelAjustes.SetActive(!boolAjustes);
-        }
+
     }
     public void BajarVida(float vida_)
     {
