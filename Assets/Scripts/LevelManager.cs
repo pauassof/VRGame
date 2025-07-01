@@ -63,7 +63,7 @@ public class LevelManager : MonoBehaviour
     public void RestarEnemigos()
     {
         totalEnemigos--;
-        if (totalEnemigos == 0)
+        if (totalEnemigos <= 0)
         {
             panelFinal.SetActive(true);
             //sonido victoria
